@@ -1,0 +1,180 @@
+/*  Author: Jan Burt. Date: 20/09/21. Modified 14/10/21.
+--------------------------------------------------------*/
+
+/*  TYPOGRAPHY
+----------------------------------------*/
+
+    /* 'SKRANJI' is the header font. Header currently SVG format.
+
+        @import url('https://fonts.googleapis.com/css2?family=Skranji&display=swap');
+        font-family: 'Skranji', cursive;
+    */
+
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap');
+
+
+    body {margin: 0 auto; padding: 0;
+            color: #43443F;
+            font-family: 'Fira Sans Condensed', sans-serif;
+            font-size: 18px; font-weight: 300;}
+
+    h1 {font-family: 'Fira Sans Condensed', sans-serif;
+         font-weight: 300; font-size: 2.2em; margin-bottom: .3em;}
+
+    h1 span {visibility: hidden;} /*hides h1 in header while logo is still visible*/
+
+    h2 {font-family: 'Fira Sans Condensed', sans-serif;
+         font-weight: 300; font-size: 2.15em; margin-bottom: .2em;}
+
+    h3 {font-family: 'Fira Sans Condensed', sans-serif;
+            font-weight: 600; font-size: 1.25em; margin-bottom: .2em;}
+    h4 {font-family: 'Fira Sans Condensed', sans-serif; color: #6F6166;
+            font-weight: 400; font-size: 1.1em; text-transform: uppercase;}
+   
+
+
+/*  GENERAL GRID-AREA SETUP: 
+Defines the area in which each page section will appear. 
+---------------------------------------------------*/
+    header {grid-area: header;}
+    nav {grid-area: nav;}
+    .main {grid-area: main;}
+    .sidebar {grid-area: aside;}
+    footer {grid-area: footer;}
+
+
+
+/*  GRID SETUP: MOBILE FIRST
+---------------------------------------------------*/
+    .wrapper {
+        max-width: 1200px;
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-areas:    "header"
+                                "nav"
+                                "main"
+                                "aside"
+                                "footer";
+        }
+        /* Grid template areas set down this way means the grid layout will be automatically arranged in 1 column*/
+
+
+/* HEADER SECTION
+---------------------------------------------------*/
+    header {background-color: #CFD4C6;
+            background-image: url(images/uxmal_crop.jpg); 
+            background-repeat: no-repeat; background-size: cover;}
+    header img  {max-width: 600px;}
+
+/* NAVIGATION
+---------------------------------------------------*/
+    nav     {background-color: #867A7E; padding:  0 1.5em;
+            display: flex; flex-flow: row wrap; 
+            align-content: center;} /*vertical centre*/
+    .navbar {display: flex; flex-flow: row wrap; padding: 0;}
+            /* Flex makes nav buttons flex items that wrap at smaller viewport width*/
+
+    .navbar li {display: inline;} 
+                /* buttons (flex items) display horizontally*/
+
+    nav a { font-size: .8em; color: #ffffff; line-height: 2em;
+            font-weight: 400; text-decoration: none; padding: 0.5em; 
+            margin: 0.2em; 
+            text-transform: uppercase; letter-spacing: .15em;}
+            /* text transform uppercase changes sentence/title case to uppercase*/
+
+    nav a:hover {background-color: #C1BBBD; padding: 0.5em;
+                 -webkit-box-shadow: 2px 2px 4px 1px #443137;
+                 -moz-box-shadow: 2px 2px 4px 1px #443137;
+                 box-shadow: 2px 2px 4px 1px #443137;} 
+                /* defines buttons with a small drop-shadow on hover. Helps give the user feedback on their position.*/
+
+    nav span {background-color: #C1BBBD; padding: 0.5em;}
+
+
+/* MAIN CONTENT
+---------------------------------------------------*/
+    .main   {background-color: #F2F0F1; padding:  0 1.7em;
+            }
+    .main-head {display: flex; flex-flow: row;}
+    .main-head img {max-height: 95px;} /*Mayan numbers 1 to 5 */
+
+
+    .container {display: flex; flex-flow: row wrap; justify-content: center;}
+    .media {flex-direction: column; padding-bottom: 2em;}
+    .main span {font-weight: 400;}
+    .main a {text-decoration: none; color: #43443F;}
+
+
+/* SIDEBAR
+---------------------------------------------------*/ 
+    .sidebar    {display: flex; align-items: flex-start; 
+                justify-content: center; /*horizontal centre*/
+                background-color: #D4C5B6; padding: 0 1em 2em;}
+    .content    {text-align: center;}
+    .designs li {color: #ffffff; list-style-type: none;} 
+                /* none - removes bullets*/
+
+    .designs a  {color: #ffffff; text-decoration: none;} 
+                /* none - removes underline*/
+
+    ul.designs  {padding: 0; /*removes indent*/ font-size: .8em;} 
+    a.style-name {font-weight: 600; color: #3F403B; 
+                text-transform: uppercase;}
+    a.designer-name {font-weight: 300; text-transform: uppercase;}
+    .designs li {margin-bottom: 1.2em; letter-spacing: .15em;}
+    .placeholder01 {max-width: 150px;}
+    .sidebar img { width: 50%;}
+    
+
+/* FOOTER
+---------------------------------------------------*/
+    footer {display: flex; flex-flow: row wrap; 
+            justify-content: space-between; 
+            align-content: center;/*vertical centre*/
+            font-size: .8em; background-color: #d0d3c0; 
+            padding:  1em 2em;}
+    footer a {text-decoration: none; color: #43443F; }
+    footer span {font-weight: 400;} 
+            /*isolates zen garden and Dave Shea links to make bolder*/
+
+    footer p     {margin: 0; padding-bottom: 0;}
+
+
+/* MEDIA QUERIES
+---------------------------------------------------*/
+
+@media screen and (min-width: 600px) {
+    .wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "header header header" 
+                        /*Header spans 3 columns on 1 row*/
+                         "nav nav nav"
+                        /*Navigation spans 3 columns on 1 row*/
+                         "main main aside" 
+                         "main main aside" 
+                        /*Main spans 2 columns on 2 rows 
+                          & aside occupies last column on 2 rows*/
+                         "footer footer footer";} 
+                        /*Footer spans all 3 columns on one row*/
+}
+   
+
+@media screen and (min-width: 1100px) {
+    .wrapper {  grid-template-columns: repeat(3, 1fr);
+                grid-template-areas: "header header header"
+                                    /*Header spans 3 columns on 1 row*/
+                                     "nav nav aside"
+                                    /*nav spans 2 columns on 1 row*/
+                                     "main main aside"
+                                     "main main aside"
+                                    /*Main spans 2 columns on 2 rows 
+                                      & aside occupies 1 column on 2 rows */
+                                     "footer footer aside";}
+                                    /*Footer spans all 3 columns on one row*/
+
+    
+     .container {display: flex; flex-flow: row wrap; justify-content: space-between;} /*justifies map and video L/R when displayed as a row. */
+}
+
